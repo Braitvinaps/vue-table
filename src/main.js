@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import App from './App.vue'
-import store from './vuex/store.js';
+import store from './vuex/store.js'
+import 'material-design-icons-iconfont'
 
 Vue.config.productionTip = false
 
