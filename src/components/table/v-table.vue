@@ -58,7 +58,7 @@ export default {
   },
   data() {
     return {
-      usersPerPage: 5,
+      usersPerPage: 10,
       pageNumber: 1,
     };
   },
