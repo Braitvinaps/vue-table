@@ -18,7 +18,7 @@
         <i class="material-icons">unfold_more</i>
       </p>
     </div>
-    
+
     <div class="v-table__body">
       <v-table-row
         v-for="row in paginatedUsers"
@@ -56,12 +56,14 @@ export default {
       },
     },
   },
+
   data() {
     return {
       usersPerPage: 10,
       pageNumber: 1,
     };
   },
+
   computed: {
     pages() {
       return Math.ceil(this.users_data.length / this.usersPerPage);
@@ -72,6 +74,7 @@ export default {
       return this.users_data.slice(from, to);
     },
   },
+
   methods: {
     pageClick(page) {
       this.pageNumber = page;
@@ -83,10 +86,12 @@ export default {
       this.users_data.sort((a, b) => a.email.localeCompare(b.email));
     },
     sortByRating() {
-      this.users_data.sort((a, b) => a.rating < b.rating ? 1 : -1);
+      this.users_data.sort((a, b) => (a.rating < b.rating ? 1 : -1));
     },
     sortByRegDate() {
-      this.users_data.sort((a, b) => a.registration_date < b.registration_date ? 1 : -1);
+      this.users_data.sort((a, b) =>
+        a.registration_date < b.registration_date ? 1 : -1
+      );
     },
   },
 };
