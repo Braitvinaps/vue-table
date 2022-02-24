@@ -156,7 +156,7 @@ export default {
   cursor: pointer;
 }
 .page {
-  margin-right: 5px;
+  margin-right: 8px;
   padding: 10px;
   border: 1px solid #e7e7e7;
 }
