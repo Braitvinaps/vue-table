@@ -4,7 +4,7 @@
       <input
         type="text"
         class="search"
-        placeholder="Search username or email"
+        placeholder="Search by username or email"
         v-model="searchUser"
       />
     </div>
@@ -117,7 +117,8 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+
 .container {
   margin-top: 50px;
 }
