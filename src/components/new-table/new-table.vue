@@ -57,7 +57,7 @@ export default {
   data() {
     return {
       searchUser: "",
-      sorting: "name",
+      sorting: "date",
       usersPerPage: 10,
       pageNumber: 1,
     };
@@ -141,9 +141,11 @@ export default {
 
 .search {
   border: 1px solid #dddddd;
-  margin-bottom: 15px;
+  margin-bottom: 30px;
+  padding: 8px;
   height: 25px;
-  width: 95%;
+  font-size: 16px;
+  width: 80%;
 }
 
 .table-pagination {
