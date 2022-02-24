@@ -23,15 +23,7 @@
             <td>{{ user.username }}</td>
             <td>{{ user.email }}</td>
             <td>{{ user.rating }}</td>
-            <td>
-              {{
-                user.registration_date
-                  .slice(0, 10)
-                  .split("-")
-                  .reverse()
-                  .join(".")
-              }}
-            </td>
+            <td>{{ user.registration_date.slice(0, 10).split("-").reverse().join(".") }}</td>
           </tr>
         </tbody>
       </table>
@@ -118,7 +110,6 @@ export default {
 </script>
 
 <style scoped>
-
 .container {
   margin-top: 20px;
 }
@@ -142,6 +133,7 @@ export default {
 
 .search {
   border: 1px solid #dddddd;
+  border-radius: 10px;
   margin-bottom: 30px;
   padding: 8px;
   height: 25px;

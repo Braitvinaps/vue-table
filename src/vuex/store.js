@@ -9,13 +9,11 @@ const store = new Vuex.Store({
         users: []
     },
     actions: {
-        GET_USERS_FROM_API({ commit }) {
-            return axios('https://5ebbb8e5f2cfeb001697d05c.mockapi.io/users', {
+        async GET_USERS_FROM_API({ commit }) {
+            const response = await axios('https://5ebbb8e5f2cfeb001697d05c.mockapi.io/users', {
                 method: 'GET'
-            })
-                .then((response) => {
-                    commit('SET_USERS_TO_VUEX', response.data);
-                })
+            });
+            commit('SET_USERS_TO_VUEX', response.data);
         }
 
     },
