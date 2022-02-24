@@ -101,7 +101,7 @@ export default {
       }
     },
     pages() {
-      return Math.ceil(this.users_data.length / this.usersPerPage);
+      return Math.ceil(this.sortingUsers.length / this.usersPerPage);
     },
     paginatedUsers() {
       let from = (this.pageNumber - 1) * this.usersPerPage;
