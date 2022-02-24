@@ -119,13 +119,14 @@ export default {
 
 <style>
 .container {
- margin-top: 50px;
-
+  margin-top: 50px;
 }
-.table table{
+
+.table table {
   width: 100%;
   margin-bottom: 20px;
   border-collapse: collapse;
+  text-align: left;
 }
 .table th {
   font-weight: bold;
@@ -144,6 +145,7 @@ export default {
   height: 25px;
   width: 95%;
 }
+
 .table-pagination {
   margin-top: 30px;
   display: flex;
