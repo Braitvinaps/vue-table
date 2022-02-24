@@ -1,35 +1,53 @@
 <template>
-  <div>
-    <div>
+  <div class="container">
+    <div class="table-search">
       <input
         type="text"
         class="search"
-        placeholder="Search user"
+        placeholder="Search username or email"
         v-model="searchUser"
       />
     </div>
-    <table class="table">
-      <thead>
-        <tr>
-          <th>Username</th>
-          <th>Email</th>
-          <th>Rating</th>
-          <th>Ragistration date</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="user in filteredUser" v-bind:key="user.id">
-          <td>{{ user.username }}</td>
-          <td>{{ user.email }}</td>
-          <td>{{ user.rating }}</td>
-          <td>
-            {{
-              user.registration_date.slice(0, 10).split("-").reverse().join(".")
-            }}
-          </td>
-        </tr>
-      </tbody>
-    </table>
+    <div class="table">
+      <table>
+        <thead>
+          <tr>
+            <th @click="sorting = 'name'">Username</th>
+            <th @click="sorting = 'email'">Email</th>
+            <th @click="sorting = 'rating'">Rating</th>
+            <th @click="sorting = 'date'">Ragistration date</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="user in paginatedUsers" v-bind:key="user.id">
+            <td>{{ user.username }}</td>
+            <td>{{ user.email }}</td>
+            <td>{{ user.rating }}</td>
+            <td>
+              {{
+                user.registration_date
+                  .slice(0, 10)
+                  .split("-")
+                  .reverse()
+                  .join(".")
+              }}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="table-pagination">
+      <div
+        class="page"
+        v-for="page in pages"
+        :key="page"
+        :class="{ page__selected: page === pageNumber }"
+        @click="pageClick(page)"
+      >
+        {{ page }}
+      </div>
+    </div>
   </div>
 </template>
 
@@ -39,6 +57,9 @@ export default {
   data() {
     return {
       searchUser: "",
+      sorting: "name",
+      usersPerPage: 10,
+      pageNumber: 1,
     };
   },
   props: {
@@ -59,25 +80,86 @@ export default {
         );
       });
     },
+    sortingUsers() {
+      switch (this.sorting) {
+        case "name":
+          return this.filteredUser.sort((a, b) =>
+            a.username.localeCompare(b.username)
+          );
+        case "email":
+          return this.filteredUser.sort((a, b) =>
+            a.email.localeCompare(b.email)
+          );
+        case "rating":
+          return this.filteredUser.sort((a, b) =>
+            a.rating < b.rating ? 1 : -1
+          );
+        case "date":
+          return this.filteredUser.sort((a, b) =>
+            a.registration_date < b.registration_date ? 1 : -1
+          );
+      }
+    },
+    pages() {
+      return Math.ceil(this.users_data.length / this.usersPerPage);
+    },
+    paginatedUsers() {
+      let from = (this.pageNumber - 1) * this.usersPerPage;
+      let to = from + this.usersPerPage;
+      return this.sortingUsers.slice(from, to);
+    },
+  },
+  methods: {
+    pageClick(page) {
+      this.pageNumber = page;
+    },
   },
 };
 </script>
 
 <style>
-.search {
-  border: 1px solid #e7e7e7;
-  margin-bottom: 15px;
-  height: 25px;
-  width: 30vw;
+.container {
+ margin-top: 50px;
+
 }
-.table {
-  margin: 0 auto;
-  text-align: left;
+.table table{
+  width: 100%;
+  margin-bottom: 20px;
+  border-collapse: collapse;
+}
+.table th {
+  font-weight: bold;
+  padding: 5px;
+  background: #d6f1bc;
+  border: 1px solid #dddddd;
+}
+.table td {
+  border: 1px solid #dddddd;
+  padding: 5px;
 }
 
-td,
-th {
+.search {
+  border: 1px solid #dddddd;
+  margin-bottom: 15px;
+  height: 25px;
+  width: 95%;
+}
+.table-pagination {
+  margin-top: 30px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  cursor: pointer;
+}
+.page {
+  margin-right: 5px;
   padding: 10px;
   border: 1px solid #e7e7e7;
+}
+.page:hover {
+  background-color: #d6f1bc;
+}
+.page__selected {
+  background-color: #b2f574;
 }
 </style>

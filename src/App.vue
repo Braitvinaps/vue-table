@@ -7,14 +7,11 @@
 
 <script>
 import { mapActions, mapGetters } from "vuex";
-import vTable from "./components/table/v-table.vue";
-// import newTable from "./components/new-table/new-table.vue";
 import NewTable from './components/new-table/new-table.vue';
 
 export default {
   name: "App",
   components: {
-    vTable,
     NewTable,
   },
   data: () => {
@@ -42,5 +39,7 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+  max-width: 1000px;
+  margin: 0 auto;
 }
 </style>
