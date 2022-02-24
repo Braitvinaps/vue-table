@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <!-- <v-table :users_data="USERS" /> -->
+    <h1>USER TABLE</h1>
     <new-table :users_data="USERS"/>
   </div>
 </template>
@@ -38,7 +38,6 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
   max-width: 1000px;
   margin: 0 auto;
 }

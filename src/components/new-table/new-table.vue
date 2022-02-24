@@ -120,7 +120,7 @@ export default {
 <style scoped>
 
 .container {
-  margin-top: 50px;
+  margin-top: 20px;
 }
 
 .table table {
