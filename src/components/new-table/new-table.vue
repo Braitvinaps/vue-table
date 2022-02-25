@@ -126,6 +126,9 @@ export default {
   background: #d6f1bc;
   border: 1px solid #dddddd;
 }
+th {
+  cursor: pointer;
+}
 .table td {
   border: 1px solid #dddddd;
   padding: 5px;
